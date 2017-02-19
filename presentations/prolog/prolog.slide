@@ -1,0 +1,57 @@
+Prolog
+Intro to Logic Programming
+16 Jan 2017
+
+Patrick Oyarzun
+Software Engineer, Pivotal Labs
+poyarzun@pivotal.io
+http://poyarzun.io
+
+
+* Programming Paradigms
+
+- Object Oriented
+- Functional
+- Imperative
+- Logic
+- etc.
+
+* Logic Programming
+
+We'll express programs as a series of 'rules', then ask the program a question in order to run it.
+
+    Horses have four legs.
+    Dogs have four legs.
+    Ducks have two legs.
+
+Then we can ask:
+
+    >> What animals have four legs?
+    >> How many legs does a horse have?
+
+
+* In prolog
+
+    has_legs(horse, 4).
+    has_legs(dog, 4).
+    has_legs(duck, 2).
+    
+    ? has_legs(X, 4).
+    ? has_legs(horse, X).
+
+
+* (more) Real example
+
+    A permutation of a list has all the same elements as the original list.
+    A list is sorted if 'a < b' for each pair of sequential elements (a, b).
+    The sorted version of a list is a sorted permutation.
+
+* In prolog
+
+sort(Unsorted, Sorted) :-
+    perm(Unsorted, Sorted),
+    is_sorted(Sorted).
+
+is_sorted([]).
+is_sorted([_]).
+is_sorted([X,Y|L]) :- X <= Y, is_sorted([Y|L])
